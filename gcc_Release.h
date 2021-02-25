@@ -233,6 +233,9 @@
 #ifndef __FLT_EVAL_METHOD_TS_18661_3__
 #define __FLT_EVAL_METHOD_TS_18661_3__ 0
 #endif
+#ifndef __OPTIMIZE__
+#define __OPTIMIZE__ 1
+#endif
 #ifndef __CHAR_UNSIGNED__
 #define __CHAR_UNSIGNED__ 1
 #endif
@@ -283,6 +286,9 @@
 #endif
 #ifndef __SIZEOF_POINTER__
 #define __SIZEOF_POINTER__ 4
+#endif
+#ifndef NDEBUG
+#define NDEBUG 1
 #endif
 #ifndef __GCC_ATOMIC_CHAR16_T_LOCK_FREE
 #define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
@@ -383,6 +389,9 @@
 #ifndef __FLT64_MIN_EXP__
 #define __FLT64_MIN_EXP__ (-1021)
 #endif
+#ifndef RELEASE
+#define RELEASE 1
+#endif
 #ifndef __ARM_PCS_VFP
 #define __ARM_PCS_VFP 1
 #endif
@@ -418,6 +427,9 @@
 #endif
 #ifndef __BIGGEST_ALIGNMENT__
 #define __BIGGEST_ALIGNMENT__ 8
+#endif
+#ifndef USE_HAL_DRIVER
+#define USE_HAL_DRIVER 1
 #endif
 #ifndef __STDC_UTF_16__
 #define __STDC_UTF_16__ 1
@@ -661,9 +673,6 @@
 #ifndef __UHA_FBIT__
 #define __UHA_FBIT__ 8
 #endif
-#ifndef __NO_INLINE__
-#define __NO_INLINE__ 1
-#endif
 #ifndef __SFRACT_MIN__
 #define __SFRACT_MIN__ (-0.5HR-0.5HR)
 #endif
@@ -795,6 +804,9 @@
 #endif
 #ifndef __SACCUM_MAX__
 #define __SACCUM_MAX__ 0X7FFFP-7HK
+#endif
+#ifndef STM32F334x8
+#define STM32F334x8 1
 #endif
 #ifndef __SIG_ATOMIC_MAX__
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
@@ -1378,22 +1390,23 @@
 #ifndef __ATOMIC_RELEASE
 #define __ATOMIC_RELEASE 3
 #endif
-#ifndef NDEBUG
-#define NDEBUG 1
-#endif
-#ifndef RELEASE
-#define RELEASE 1
-#endif
 #endif
 
 // --- Include directories begin --- //
 //.
+//$(BSP_ROOT)/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc
+//$(BSP_ROOT)/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc/Legacy
+//$(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/Core/Include
+//$(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/Device/ST/STM32F3xx/Include
+//$(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/Include
+//$(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/RTOS2/Include
 //$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1
 //$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\arm-none-eabi\thumb\v7e-m+fp\hard
 //$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\backward
 //$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include
 //$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include-fixed
 //$(TOOLCHAIN_ROOT)\arm-none-eabi\include
+//Inc
 // --- Include directories end --- //
 
 

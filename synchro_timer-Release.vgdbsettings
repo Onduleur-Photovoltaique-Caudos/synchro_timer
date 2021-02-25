@@ -25,10 +25,6 @@
     <AdditionalMakeArguments>$(LocalMultiThreadedBuildFlags)</AdditionalMakeArguments>
     <MakeCommandTemplate>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-      <RemoteHost>
-        <HostName>BuildMachine</HostName>
-        <Transport>BuiltinShortcut</Transport>
-      </RemoteHost>
       <Command>$(ToolchainMake)</Command>
       <Arguments>$(ToolchainMakeArgs)</Arguments>
       <WorkingDirectory>$(BuildDir)</WorkingDirectory>
@@ -54,6 +50,7 @@
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
   </CustomShortcuts>
   <UserDefinedVariables />
+  <ImportedPropertySheets />
   <CodeSense>
     <Enabled>Unknown</Enabled>
     <ExtraSettings>
@@ -66,6 +63,8 @@
       <Enabled>false</Enabled>
     </CodeAnalyzerSettings>
   </CodeSense>
+  <Configurations />
+  <ProgramArgumentsSuggestions />
   <Debug xsi:type="com.visualgdb.debug.embedded">
     <AdditionalStartupCommands />
     <AdditionalGDBSettings>

@@ -46,9 +46,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeIncludeSearchPath>.;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\arm-none-eabi\thumb\v7e-m+fp\hard;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include-fixed;$(TOOLCHAIN_ROOT)\arm-none-eabi\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>.;$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc;$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc\Legacy;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Core\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Device\ST\STM32F3xx\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\RTOS2\Include;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\arm-none-eabi\thumb\v7e-m+fp\hard;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include-fixed;$(TOOLCHAIN_ROOT)\arm-none-eabi\include;Inc;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(BSP_ROOT)\stm32_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
-    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
@@ -56,11 +55,11 @@
     <IncludePath />
     <ReferencePath />
     <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeIncludeSearchPath>.;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\arm-none-eabi\thumb\v7e-m+fp\hard;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include-fixed;$(TOOLCHAIN_ROOT)\arm-none-eabi\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>.;$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc;$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc\Legacy;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Core\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Device\ST\STM32F3xx\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Include;$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\RTOS2\Include;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\arm-none-eabi\thumb\v7e-m+fp\hard;$(TOOLCHAIN_ROOT)\arm-none-eabi\include\c++\9.3.1\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-none-eabi\9.3.1\include-fixed;$(TOOLCHAIN_ROOT)\arm-none-eabi\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(BSP_ROOT)\stm32_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
-    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
@@ -68,6 +67,7 @@
     <IncludePath />
     <ReferencePath />
     <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
@@ -78,13 +78,14 @@
   </ImportGroup>
   <ItemGroup />
   <ItemGroup>
-    <ClCompile Include="..\..\synchro_timer\Src\gpio.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\main.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\stm32f3xx_hal_msp.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\stm32f3xx_it.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\system_stm32f3xx.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\tim.c" />
-    <ClCompile Include="..\..\synchro_timer\Src\usart.c" />
+    <ClCompile Include="Src\gpio.c" />
+    <ClCompile Include="Src\main.c" />
+    <ClCompile Include="Src\stm32f3xx_hal_msp.c" />
+    <ClCompile Include="Src\stm32f3xx_it.c" />
+    <ClCompile Include="Src\tim.c" />
+    <ClCompile Include="Src\usart.c" />
+    <ClInclude Include="Inc\main.h" />
+    <ClInclude Include="Inc\tim.h" />
     <None Include="stm32.mak" />
     <ClCompile Include="$(BSP_ROOT)\STM32F3xxxx\StartupFiles\startup_stm32f334x8.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal.c" />
@@ -159,10 +160,8 @@
     <ClCompile Include="$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Src\stm32f3xx_ll_utils.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F3xxxx\CMSIS_HAL\Device\ST\STM32F3xx\Source\Templates\system_stm32f3xx.c" />
     <ClInclude Include="..\..\synchro_timer\Inc\gpio.h" />
-    <ClInclude Include="..\..\synchro_timer\Inc\main.h" />
     <ClInclude Include="..\..\synchro_timer\Inc\stm32f3xx_hal_conf.h" />
     <ClInclude Include="..\..\synchro_timer\Inc\stm32f3xx_it.h" />
-    <ClInclude Include="..\..\synchro_timer\Inc\tim.h" />
     <ClInclude Include="..\..\synchro_timer\Inc\usart.h" />
     <ClInclude Include="$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal.h" />
     <ClInclude Include="$(BSP_ROOT)\STM32F3xxxx\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_adc.h" />

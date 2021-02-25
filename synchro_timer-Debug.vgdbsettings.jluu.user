@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<VisualGDBUserPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserDefinedVariableValues />
+  <DebugPreferences xsi:type="com.visualgdb.debug.embedded.preferences">
+    <CatchpointConfiguration>
+      <Exec>false</Exec>
+      <Fork>false</Fork>
+      <Vfork>false</Vfork>
+      <Syscalls />
+      <CXXCatchpoints />
+    </CatchpointConfiguration>
+    <MaskInterruptsWhileStepping>false</MaskInterruptsWhileStepping>
+    <MemoryWindowPreferences />
+    <LiveVariables />
+    <Suggestions>
+      <HardwareRegisterFilters />
+    </Suggestions>
+    <HardwareRegisters>
+      <HardwareRegisterRecord>
+        <Name>TIM2.CNT.CNT</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560020905518653</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM2.CNT</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560020440267855</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM2.ARR.ARR</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560020459111788</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM2.PSC</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560020513882730</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM2.PSC.PSC</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560020526817705</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM3.CNT</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>132560041232625589</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+      <HardwareRegisterRecord>
+        <Name>TIM2.ARR</Name>
+        <State>
+          <IsFavorite>false</IsFavorite>
+          <IsLive>false</IsLive>
+          <LastUsed>0</LastUsed>
+        </State>
+      </HardwareRegisterRecord>
+    </HardwareRegisters>
+  </DebugPreferences>
+</VisualGDBUserPreferences>

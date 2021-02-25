@@ -41,29 +41,10 @@
       <UniqueIdentifier>{b646a12c-ac28-4451-a3dc-0df91c162b4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ClCompile Include="..\..\synchro_timer\Src\gpio.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\main.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\stm32f3xx_hal_msp.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\stm32f3xx_it.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\system_stm32f3xx.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\tim.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\synchro_timer\Src\usart.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="stm32.mak">
       <Filter>Source files\Device-specific files</Filter>
     </None>
@@ -286,16 +267,10 @@
     <ClInclude Include="..\..\synchro_timer\Inc\gpio.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\synchro_timer\Inc\main.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\synchro_timer\Inc\stm32f3xx_hal_conf.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\synchro_timer\Inc\stm32f3xx_it.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\synchro_timer\Inc\tim.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\synchro_timer\Inc\usart.h">
@@ -634,5 +609,31 @@
     <None Include="stm32.xml">
       <Filter>VisualGDB settings</Filter>
     </None>
+    <ClCompile Include="Src\gpio.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\main.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\stm32f3xx_hal_msp.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\stm32f3xx_it.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\tim.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\usart.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\tim.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\main.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
