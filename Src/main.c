@@ -94,6 +94,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM15_Init();
   MX_TIM16_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
@@ -102,6 +103,7 @@ int main(void)
 	HAL_UART_Transmit(&huart2, (uint8_t *) msg, sizeof(msg), 100);
 	HAL_TIM_PWM_Start(&htim16, TIM_CHANNEL_1);
 	HAL_TIM_OnePulse_Start_IT(&htim15, TIM_CHANNEL_1);
+	HAL_TIM_OnePulse_Start_IT(&htim1, TIM_CHANNEL_1);
 	//HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); 
 	//HAL_TIM_OC_Start(&htim15, TIM_CHANNEL_1); 
 
@@ -167,8 +169,8 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV16;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
@@ -187,6 +189,27 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim) // same as HAL_TIM
 {
 	if (htim == &htim15) {
 		//executeSetRt();
+		//		HAL_TIM_OnePulse_Stop_IT(htim, TIM_CHANNEL_1);
+		//HAL_TIM_OnePulse_Start_IT(htim, TIM_CHANNEL_1);
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim == &htim15) {
+		//HAL_TIM_OC_Stop(htim15, TIM_CHANNEL_1);
+		HAL_TIM_OnePulse_Stop_IT(htim, TIM_CHANNEL_1);
+		HAL_TIM_OnePulse_Start_IT(htim, TIM_CHANNEL_1);
+	}
+}
+
+
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim == &htim15) {
+		//executeSetRt();
+		//		HAL_TIM_OnePulse_Stop_IT(htim, TIM_CHANNEL_1);
+		//HAL_TIM_OnePulse_Start_IT(htim, TIM_CHANNEL_1);
 	}
 }
 
