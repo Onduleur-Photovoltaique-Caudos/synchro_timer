@@ -52,6 +52,8 @@ void MX_TIM17_Init(void);
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN Prototypes */
+	int setPeriod(int newPeriod);
+	int setPulse(int newPulse);
 	 int initializePosition1(int newPosition);
 	 int initializePosition2(int newPosition);
 	 int getPosition1(void);

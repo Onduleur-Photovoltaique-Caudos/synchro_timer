@@ -96,8 +96,8 @@ int main(void)
   MX_TIM16_Init();
   MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start_IT(&htim2, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
 	char *msg;
 	msg = "\r\nstarting\r\n";
 	HAL_UART_Transmit(&huart2, (uint8_t *) msg, sizeof(msg), 100);
@@ -121,7 +121,7 @@ int main(void)
 	int rt = 1000;
 	int period;
 	initializePosition1(16);
-	initializePosition2(8);
+	initializePosition2(16);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -132,9 +132,9 @@ int main(void)
 	  //sprintf(msg2, " encoded value=%d\n", 10);
 	  //HAL_UART_Transmit(&huart2, (uint8_t *) msg2, sizeof(msg2), 100);
 	  period = position1 * 50;
-	  HAL_Delay(period *rt/15);
+	  HAL_Delay(period *rt/31);
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-	  HAL_Delay(period *(16-rt) / 15);
+	  HAL_Delay(period *(32-rt) / 31);
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
   }
   /* USER CODE END 3 */
@@ -210,6 +210,14 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 		//executeSetRt();
 		//		HAL_TIM_OnePulse_Stop_IT(htim, TIM_CHANNEL_1);
 		//HAL_TIM_OnePulse_Start_IT(htim, TIM_CHANNEL_1);
+	}
+}
+
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
+	if (htim == &htim2) {
+		setPeriod(310*(getPosition1()+1));
+	} else if (htim == &htim3) {
+		setPulse(160*(getPosition2() + 1)) ;
 	}
 }
 
