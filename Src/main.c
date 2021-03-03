@@ -96,6 +96,7 @@ int main(void)
   MX_TIM16_Init();
   MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
+	postInitTim15();
 	HAL_TIM_Encoder_Start_IT(&htim2, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
 	char *msg;
@@ -218,7 +219,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 	if (htim == &htim2) {
 		setTrigPC0_osc((60*getPosition2())/nbSteps2 + 1);
 	} else if (htim == &htim3) {
-		setTrigPB15_down(9500 + (4000*getPosition3()) / nbSteps3);
+		setTrigPB15_AC(4500 + (800*getPosition3()) / nbSteps3);
 	}
 }
 
