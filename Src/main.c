@@ -117,24 +117,25 @@ int main(void)
   timer 16 PA12 is the state trigger and also resets timer 15
   timer 15 PB14 is the measurement trigger */
 	char msg2[100];
-	int position1=1000;
+	int position2=1000;
 	int rt = 1000;
 	int period;
-	initializePosition1(16);
-	initializePosition2(16);
+	// initialize in the middle of the range
+	initializePosition2(nbSteps2/2);
+	initializePosition3(nbSteps3/2);
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  position1 = getPosition1()+1;
-	  rt = getPosition2();
+	  position2 = getPosition2()+1;
+	  rt = getPosition3();
 	  //sprintf(msg2, " encoded value=%d\n", 10);
 	  //HAL_UART_Transmit(&huart2, (uint8_t *) msg2, sizeof(msg2), 100);
-	  period = position1 * 50;
-	  HAL_Delay(period *rt/31);
+	  period = position2 * 50;
+	  HAL_Delay(period *rt / (nbSteps3 - 1)) ;
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-	  HAL_Delay(period *(32-rt) / 31);
+	  HAL_Delay(period *(nbSteps3 - rt) / (nbSteps3 - 1));
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
   }
   /* USER CODE END 3 */
@@ -215,9 +216,9 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 	if (htim == &htim2) {
-		setPeriod(310*(getPosition1()+1));
+		setTrigPC0_osc((60*getPosition2())/nbSteps2 + 1);
 	} else if (htim == &htim3) {
-		setPulse(160*(getPosition2() + 1)) ;
+		setTrigPB15_down(9500 + (4000*getPosition3()) / nbSteps3);
 	}
 }
 

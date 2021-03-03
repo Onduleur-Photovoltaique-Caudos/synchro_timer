@@ -206,9 +206,7 @@ void MX_TIM15_Init(void)
     Error_Handler();
   }
   sSlaveConfig.SlaveMode = TIM_SLAVEMODE_TRIGGER;
-  sSlaveConfig.InputTrigger = TIM_TS_TI1FP1;
-  sSlaveConfig.TriggerPolarity = TIM_TRIGGERPOLARITY_RISING;
-  sSlaveConfig.TriggerFilter = 0;
+  sSlaveConfig.InputTrigger = TIM_TS_ITR2;
   if (HAL_TIM_SlaveConfigSynchro(&htim15, &sSlaveConfig) != HAL_OK)
   {
     Error_Handler();
@@ -219,8 +217,8 @@ void MX_TIM15_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 3000;
+  sConfigOC.OCMode = TIM_OCMODE_PWM2;
+  sConfigOC.Pulse = 5000;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -254,7 +252,7 @@ void MX_TIM16_Init(void)
   htim16.Instance = TIM16;
   htim16.Init.Prescaler = 64000;
   htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim16.Init.Period = 20;
+  htim16.Init.Period = 10;
   htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim16.Init.RepetitionCounter = 0;
   htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -267,7 +265,7 @@ void MX_TIM16_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 10;
+  sConfigOC.Pulse = 5;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -313,7 +311,6 @@ void MX_TIM17_Init(void)
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
   if(tim_baseHandle->Instance==TIM1)
   {
   /* USER CODE BEGIN TIM1_MspInit 0 */
@@ -336,17 +333,6 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
   /* USER CODE END TIM15_MspInit 0 */
     /* TIM15 clock enable */
     __HAL_RCC_TIM15_CLK_ENABLE();
-
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-    /**TIM15 GPIO Configuration
-    PB14     ------> TIM15_CH1
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_14;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF1_TIM15;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     /* TIM15 interrupt Init */
     HAL_NVIC_SetPriority(TIM1_BRK_TIM15_IRQn, 0, 0);
@@ -539,12 +525,6 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
     /* Peripheral clock disable */
     __HAL_RCC_TIM15_CLK_DISABLE();
 
-    /**TIM15 GPIO Configuration
-    PB14     ------> TIM15_CH1
-    PB15     ------> TIM15_CH2
-    */
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_14|GPIO_PIN_15);
-
     /* TIM15 interrupt Deinit */
   /* USER CODE BEGIN TIM15:TIM1_BRK_TIM15_IRQn disable */
     /**
@@ -629,38 +609,39 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* tim_encoderHandle)
 
 /* USER CODE BEGIN 1 */
 
-int setPeriod(int newPeriod){
+int setTrigPC0_osc(int newPeriod){
+	int previousCount = htim1.Instance->ARR;
+	htim1.Instance->CCR1 = newPeriod;
+	htim1.Instance->ARR = newPeriod+100;
+	return previousCount;
+}
+
+int setTrigPB15_down(int newPulse)
+{
 	int previousCount = htim15.Instance->ARR;
-	htim15.Instance->ARR = newPeriod;
-	return previousCount;
-}
-
-int setPulse(int newPulse)
-{
-	int previousCount = htim15.Instance->CCR2;
-	htim15.Instance->CCR2 = newPulse;
-	return previousCount;
-}
-
-int initializePosition1(int newPosition)
-{
-	int previousCount = htim2.Instance->CNT;
-	htim2.Instance->CNT = newPosition;
+	htim15.Instance->ARR = newPulse;
 	return previousCount;
 }
 
 int initializePosition2(int newPosition)
 {
 	int previousCount = htim2.Instance->CNT;
+	htim2.Instance->CNT = newPosition;
+	return previousCount;
+}
+
+int initializePosition3(int newPosition)
+{
+	int previousCount = htim2.Instance->CNT;
 	htim3.Instance->CNT = newPosition;
 	return previousCount;
 }
-int getPosition1()
+int getPosition2()
 {
 	return htim2.Instance->CNT;
 }
 
-int getPosition2()
+int getPosition3()
 {
 	return htim3.Instance->CNT;
 }

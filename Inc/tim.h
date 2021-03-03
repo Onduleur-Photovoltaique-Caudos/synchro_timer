@@ -52,13 +52,12 @@ void MX_TIM17_Init(void);
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN Prototypes */
-	int setPeriod(int newPeriod);
-	int setPulse(int newPulse);
-	 int initializePosition1(int newPosition);
+	int setTrigPC0_osc(int newValue);
+	int setTrigPB15_down(int newPulse);
 	 int initializePosition2(int newPosition);
-	 int getPosition1(void);
-
+	 int initializePosition3(int newPosition);
 	 int getPosition2(void);
+	 int getPosition3(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
