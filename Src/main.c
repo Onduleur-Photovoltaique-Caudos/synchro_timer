@@ -122,7 +122,7 @@ int main(void)
 	int rt = 1000;
 	int period;
 	// initialize in the middle of the range
-	initializePosition2(nbSteps2/2);
+	initializePosition2(nbSteps2 / 2);
 	initializePosition3(nbSteps3/2);
   while (1)
   {
@@ -138,6 +138,8 @@ int main(void)
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
 	  HAL_Delay(period *(nbSteps3 - rt) / (nbSteps3 - 1));
 	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+	  int tim16Period = 1000 + 2*(getPosition2() - nbSteps2 / 2);
+	  setTim16Period(tim16Period);
   }
   /* USER CODE END 3 */
 }
@@ -217,7 +219,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 	if (htim == &htim2) {
-		setTrigPC0_osc((60*getPosition2())/nbSteps2 + 1);
+		setTrigPC0_osc((120*getPosition2())/nbSteps2 + 1);
 	} else if (htim == &htim3) {
 		setTrigPB15_AC(4500 + (800*getPosition3()) / nbSteps3);
 	}

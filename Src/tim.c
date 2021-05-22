@@ -255,9 +255,9 @@ void MX_TIM16_Init(void)
   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
   htim16.Instance = TIM16;
-  htim16.Init.Prescaler = 64000;
+  htim16.Init.Prescaler = 640;
   htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim16.Init.Period = 10;
+  htim16.Init.Period = 1000;
   htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim16.Init.RepetitionCounter = 0;
   htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -673,29 +673,41 @@ int setTrigPB15_AC(int newPulse)
 	return previousCount;
 }
 
+
+
+
+
+volatile int lastPosition2;
+int getPosition2()
+{
+	lastPosition2 = htim2.Instance->CNT;
+	return lastPosition2;
+}
 int initializePosition2(int newPosition)
 {
+	lastPosition2 = newPosition;
 	int previousCount = htim2.Instance->CNT;
 	htim2.Instance->CNT = newPosition;
 	return previousCount;
 }
+volatile int lastPosition3;
 
 int initializePosition3(int newPosition)
 {
+	lastPosition3 = newPosition;
 	int previousCount = htim2.Instance->CNT;
 	htim3.Instance->CNT = newPosition;
 	return previousCount;
 }
-int getPosition2()
-{
-	return htim2.Instance->CNT;
-}
-
 int getPosition3()
 {
-	return htim3.Instance->CNT;
+	lastPosition3 = htim2.Instance->CNT;
+	return lastPosition3;
 }
 
+void setTim16Period(int newPeriod){
+	htim16.Instance->ARR = newPeriod;
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

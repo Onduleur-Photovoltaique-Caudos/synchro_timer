@@ -59,6 +59,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 	 int initializePosition3(int newPosition);
 	 int getPosition2(void);
 	 int getPosition3(void);
+	void setTim16Period(int newPeriod);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
